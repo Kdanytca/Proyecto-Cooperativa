@@ -73,7 +73,7 @@
                     <!-- Miembro 1 -->
                     <div class="text-center">
                         <div class="w-28 h-28 mx-auto rounded-full overflow-hidden bg-green-100">
-                            <img src="{{ asset('images/equipo/kevin.jpg') }}" alt="Kevin Alegría"
+                            <img src="{{ asset('img/k.jpg') }}" alt="Kevin Alegría"
                                 class="w-full h-full object-cover">
                         </div>
                         <h4 class="mt-3 font-semibold text-gray-800">Kevin Alegría</h4>
@@ -83,7 +83,7 @@
                     <!-- Miembro 2 -->
                     <div class="text-center">
                         <div class="w-28 h-28 mx-auto rounded-full overflow-hidden bg-green-100">
-                            <img src="{{ asset('images/equipo/alejandra.jpg') }}" alt="Alejandra Díaz"
+                            <img src="{{ asset('img/g.webp') }}" alt="Alejandra Díaz"
                                 class="w-full h-full object-cover">
                         </div>
                         <h4 class="mt-3 font-semibold text-gray-800">Alejandra Díaz</h4>
@@ -93,7 +93,7 @@
                     <!-- Miembro 3 -->
                     <div class="text-center">
                         <div class="w-28 h-28 mx-auto rounded-full overflow-hidden bg-green-100">
-                            <img src="{{ asset('images/equipo/fatima.jpg') }}" alt="Fátima Hernández"
+                            <img src="{{ asset('img/f.jpg') }}" alt="Fátima Hernández"
                                 class="w-full h-full object-cover">
                         </div>
                         <h4 class="mt-3 font-semibold text-gray-800">Fátima Hernández</h4>
@@ -103,7 +103,7 @@
                     <!-- Miembro 4 -->
                     <div class="text-center">
                         <div class="w-28 h-28 mx-auto rounded-full overflow-hidden bg-green-100">
-                            <img src="{{ asset('images/equipo/evelin.jpg') }}" alt="Evelin Vásquez"
+                            <img src="{{ asset('img/e.jpg') }}" alt="Evelin Vásquez"
                                 class="w-full h-full object-cover">
                         </div>
                         <h4 class="mt-3 font-semibold text-gray-800">Evelin Vásquez</h4>
