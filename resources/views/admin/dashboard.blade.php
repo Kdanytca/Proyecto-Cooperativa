@@ -37,10 +37,6 @@
                     <h3 class="text-xl font-semibold text-green-900">💵 Créditos activos</h3>
                     <p class="mt-2 text-2xl font-bold text-green-800">{{ $creditosActivos }}</p>
                 </div>
-                <div class="bg-yellow-100 p-6 rounded-xl text-center shadow">
-                    <h3 class="text-xl font-semibold text-green-900">⚠️ Pagos atrasados</h3>
-                    <p class="mt-2 text-2xl font-bold text-red-600">{{ $pagosAtrasados }}</p>
-                </div>
             </div>
 
             <!-- Acciones rápidas -->

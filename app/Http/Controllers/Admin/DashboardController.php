@@ -24,7 +24,6 @@ class DashboardController extends Controller
         // Créditos
         $totalSolicitudes = Credito::count();
         $creditosActivos  = Credito::where('estado', 'aprobado')->count();
-        $pagosAtrasados   = Cuota::where('estado', 'atrasada')->count();
 
         // Últimas solicitudes (tabla al final)
         $ultimasSolicitudes = Credito::with('user')
@@ -39,7 +38,6 @@ class DashboardController extends Controller
             'totalClientes',
             'totalSolicitudes',
             'creditosActivos',
-            'pagosAtrasados',
             'ultimasSolicitudes',
             'pendientes'
         ));
