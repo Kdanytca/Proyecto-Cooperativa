@@ -62,8 +62,8 @@
                 <tr>
                     <td>{{ $c->name }}</td>
                     <td>{{ $c->email }}</td>
-                    <td>{{ $c->perfilCrediticio->telefono ?? 'N/A' }}</td>
-                    <td>{{ $c->perfilCrediticio->salario ? '$' . number_format($c->perfilCrediticio->salario, 2) : 'N/A' }}
+                    <td>{{ $c->perfilCrediticio?->telefono ?? 'N/A' }}</td>
+                    <td>{{ $c->perfilCrediticio?->salario ? '$' . number_format($c->perfilCrediticio->salario, 2) : 'N/A' }}
                     </td>
                     <td class="{{ $c->perfil_completo ? 'completo' : 'incompleto' }}">
                         {{ $c->perfil_completo ? 'Completo' : 'Incompleto' }}

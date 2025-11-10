@@ -30,20 +30,20 @@ Route::middleware(['auth'])->group(function () {
     // ADMINISTRADOR
     // ========================
     Route::prefix('administrador')->name('administrador.')->group(function () {
-        // Dashboard
+        // Dashboard (con parche de seguridad en el controlador)
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
-
+        
         // Gestión de usuarios
         Route::resource('/users', UserController::class)->names('users');
-
+        
         // Gestión de clientes
         Route::resource('/clients', ClientController::class)->names('clients');
-
+        
         // Gestión de créditos
         Route::get('/creditos', [CreditoController::class, 'index'])->name('creditos.index');
         Route::get('/creditos/{credito}', [CreditoController::class, 'show'])->name('creditos.show');
         Route::patch('/creditos/{credito}', [CreditoController::class, 'updateEstado'])->name('creditos.update');
-
+        
         // Reportes
         Route::get('/reportes', [ReporteController::class, 'index'])->name('reportes.index');
         Route::post('/reportes/generar', [ReporteController::class, 'generar'])->name('reportes.generar');
@@ -54,18 +54,17 @@ Route::middleware(['auth'])->group(function () {
     // EMPLEADO
     // ========================
     Route::prefix('empleado')->name('empleado.')->group(function () {
+        // Mismo dashboard del admin (con parche de seguridad)
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     });
-
 
     // ========================
     // CLIENTE
     // ========================
     Route::prefix('cliente')->name('cliente.')->group(function () {
+        // Dashboard exclusivo para clientes
         Route::get('/dashboard', function () {
             $user = Auth::user();
-
-            // Buscar crédito activo (aprobado o en curso)
             $creditoActivo = $user->creditos()
                 ->whereIn('estado', ['aprobado', 'liquidado'])
                 ->with('cuotas')
@@ -107,17 +106,18 @@ Route::middleware(['auth'])->group(function () {
             ));
         })->name('dashboard');
 
+        // Mis créditos
         Route::get('/creditos', [CreditoController::class, 'misCreditos'])->name('creditos.index');
         Route::post('/creditos', [CreditoController::class, 'store'])->name('creditos.store');
-
-        //  Detalle del crédito con cuotas
+        
+        // Detalle de crédito
         Route::get('/creditos/{credito}', [CreditoController::class, 'showCliente'])->name('creditos.show');
-
-        //  Pago de cuota
+        
+        // Pago de cuota
         Route::post('/cuotas/{cuota}/pagar', [CreditoController::class, 'pagarCuota'])
             ->name('cuotas.pagar');
-
-        // Reportes de créditos
+        
+        // Reporte personal
         Route::get('/reporte', [App\Http\Controllers\Cliente\ReporteController::class, 'generar'])
             ->name('reporte.generar');
     });
@@ -130,16 +130,16 @@ Route::get('/creditos', function () {
     return view('creditos');
 })->name('creditos.index');
 
-// Solicitud de crédito (solo cliente autenticado)
+// Solicitud de crédito (solo autenticados)
 Route::post('/creditos', [CreditoController::class, 'store'])->name('prestamos.store');
 
-// Créditos aprobados / historial
+// Gestión de créditos
 Route::get('/creditos/gestion', [CreditoController::class, 'gestion'])->name('creditos.gestion');
-
-// Detalle de un crédito específico
 Route::get('/creditos/{credito}', [CreditoController::class, 'show'])->name('creditos.show');
 
-//Nosotros y contacto (acceso publico)
+// ========================
+// PÁGINAS PÚBLICAS
+// ========================
 Route::get('/nosotros', function () {
     return view('nosotros');
 })->name('nosotros');
@@ -147,6 +147,7 @@ Route::get('/nosotros', function () {
 Route::get('/contacto', function () {
     return view('contacto');
 })->name('contacto');
+
 // ========================
 // AUTENTICACIÓN
 // ========================
